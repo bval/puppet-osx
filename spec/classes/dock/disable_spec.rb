@@ -6,6 +6,14 @@ describe 'osx::dock::disable' do
   it do
     should include_class('osx::dock')
 
+    should contain_boxen__osx_defaults('Automatically hide the dock').with({
+      :key    => 'autohide',
+      :domain => 'com.apple.dock',
+      :value  => true,
+      :notify => 'Exec[killall Dock]',
+      :user   => facts[:boxen_user]
+    })
+
     should contain_boxen__osx_defaults('Disable the dock').with({
       :key    => 'autohide-delay',
       :domain => 'com.apple.dock',

@@ -1,6 +1,7 @@
 # Public: Disables the dock by setting a long autohide-delay
 class osx::dock::disable {
   include osx::dock
+  include osx::dock::autohide
 
   boxen::osx_defaults { 'Disable the dock':
     user   => $::boxen_user,
